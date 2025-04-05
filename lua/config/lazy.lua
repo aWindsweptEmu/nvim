@@ -45,3 +45,8 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+-- Custom Mappings
+vim.opt.number = true
+vim.keymap.set({'n', 'v'}, '<leader>t', ':NvimTreeOpen<CR>', { buffer = true })
+

@@ -32,6 +32,7 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.number = true
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -45,8 +46,3 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-
--- Custom Mappings
-vim.opt.number = true
-vim.keymap.set({'n', 'v'}, '<leader>t', ':NvimTreeOpen<CR>', { buffer = true })
-

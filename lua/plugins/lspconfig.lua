@@ -1,11 +1,24 @@
 return {
   "williamboman/mason.nvim",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
   "williamboman/mason-lspconfig.nvim",
   {
     "neovim/nvim-lspconfig",
     config = function()
 
       require("mason").setup()
+
+      -- manage formatters
+      require('mason-tool-installer').setup {
+        ensure_installed = {
+          'gofumpt',
+          'clang-format',
+          'stylua',
+          'shfmt',
+        },
+        auto_update = true,
+        run_on_start = true,
+      }
 
       require("mason-lspconfig").setup {
         ensure_installed = { "lua_ls", "gopls", "clangd", "bashls", "yamlls"},
@@ -43,7 +56,13 @@ return {
       },
     }
 
-    require'lspconfig'.gopls.setup{}
+    require'lspconfig'.gopls.setup{
+      settings = {
+        gopls = {
+            gofumpt = true
+        }
+      }
+    }
     require'lspconfig'.bashls.setup{}
     require'lspconfig'.clangd.setup{}
     require'lspconfig'.yamlls.setup{}

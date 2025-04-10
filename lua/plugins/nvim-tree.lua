@@ -7,12 +7,12 @@ return {
 	},
 	keys = {
 		{
-			"<leader>t",
+			"<leader>to",
 			"<cmd>NvimTreeOpen<cr>",
 			desc = "Nvim Tree Open",
 		},
 		{
-			"<leader>c",
+			"<leader>tc",
 			"<cmd>NvimTreeClose<cr>",
 			desc = "Nvim Tree Close",
 		},

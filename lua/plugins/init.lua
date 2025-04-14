@@ -1,8 +1,10 @@
 return {
-  {
-    "EdenEast/nightfox.nvim",
-    config = function()
-      vim.cmd([[colorscheme carbonfox]])
-    end,
-  },
+	{
+		"Mofiqul/vscode.nvim",
+		config = function()
+			vim.opt.background = "dark"
+			require("vscode").setup({})
+			vim.cmd([[colorscheme vscode]])
+		end,
+	},
 }

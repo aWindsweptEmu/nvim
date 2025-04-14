@@ -14,6 +14,7 @@ return {
 					"clang-format",
 					"stylua",
 					"shfmt",
+					"tflint",
 				},
 				auto_update = true,
 				run_on_start = true,

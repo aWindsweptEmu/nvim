@@ -17,3 +17,8 @@
 * [folke/which-key.nvim](https://github.com/folke/which-key.nvim)
 * [folke/trouble.nvim](https://github.com/folke/trouble.nvim)
 * [romgrk/barbar.nvim](https://github.com/romgrk/barbar.nvim)
+
+## Supported Languages:
+* Lua
+* Go
+* C/C++

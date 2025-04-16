@@ -87,25 +87,61 @@ return {
 					vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
-					local opts = { buffer = ev.buf, noremap = true, silent = true }
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, opts)
-					vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
-					vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
-					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-					vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-					vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+					local opts = { buffer = ev.buf, noremap = true, silent = true, desc = "" }
+					local with_desc = function(options, description)
+						options.desc = description
+						return options
+					end
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, with_desc(opts, "LSP hover"))
+					vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, with_desc(opts, "LSP goto declaration"))
+					vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, with_desc(opts, "LSP goto definition"))
+					vim.keymap.set(
+						"n",
+						"<leader>gi",
+						vim.lsp.buf.implementation,
+						with_desc(opts, "LSP goto implementations")
+					)
+					vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, with_desc(opts, "LSP goto references"))
+					vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, with_desc(opts, "LSP signature help"))
+					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, with_desc(opts, "LSP rename"))
+					vim.keymap.set(
+						"n",
+						"<leader>wa",
+						vim.lsp.buf.add_workspace_folder,
+						with_desc(opts, "LSP add workspace folder")
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>wr",
+						vim.lsp.buf.remove_workspace_folder,
+						with_desc(opts, "LSP remove workspace folder")
+					)
 					vim.keymap.set("n", "<leader>wl", function()
 						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-					end, opts)
-					vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+					end, with_desc(opts, "LSP list workspace folder"))
+					vim.keymap.set(
+						"n",
+						"<leader>D",
+						vim.lsp.buf.type_definition,
+						with_desc(opts, "LSP type definition")
+					)
 					vim.keymap.set("n", "<leader>fm", function()
 						vim.lsp.buf.format({ async = true })
-					end, opts)
-					vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-					vim.keymap.set("n", "<leader>qf", quickfix, opts)
+					end, with_desc(opts, "LSP format"))
+					vim.keymap.set(
+						{ "n", "v" },
+						"<leader>ca",
+						vim.lsp.buf.code_action,
+						with_desc(opts, "LSP code action")
+					)
+					vim.keymap.set("n", "<leader>cf", function()
+						vim.lsp.buf.code_action({
+							filter = function(a)
+								return a.isPreferred
+							end,
+							apply = true,
+						})
+					end, with_desc(opts, "LSP code action fix"))
 				end,
 			})
 		end,

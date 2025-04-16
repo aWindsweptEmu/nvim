@@ -41,7 +41,7 @@ return {
 		--                 :BufferGotoPinned
 		--                 :BufferGotoUnpinned
 		-- Close buffer
-		map("n", "<leader>c", "<Cmd>BufferClose<CR>", opts)
+		map("n", "<leader>q", "<Cmd>BufferClose<CR>", opts)
 		-- Wipeout buffer
 		--                 :BufferWipeout
 

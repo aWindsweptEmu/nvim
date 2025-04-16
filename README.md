@@ -7,7 +7,7 @@
 4. [go](https://go.dev/doc/install)
 
 ## Installation: 
-1. Install the latest version of neovim here: https://github.com/neovim/neovim/blob/master/INSTALL.md
+1. Install the latest version of [neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md)
 2. Clone this repository to your ~/.config/ directory
 3. Launch neovim and enjoy
 

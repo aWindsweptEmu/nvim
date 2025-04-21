@@ -15,6 +15,7 @@ return {
 					"stylua",
 					"shfmt",
 					"tflint",
+					"hadolint",
 				},
 				auto_update = true,
 				run_on_start = true,
@@ -22,7 +23,15 @@ return {
 
 			-- install lsp servers
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "gopls", "clangd", "bashls", "yamlls" },
+				ensure_installed = {
+					"lua_ls",
+					"gopls",
+					"clangd",
+					"bashls",
+					"yamlls",
+					"dockerls",
+					"docker_compose_language_service",
+				},
 			})
 
 			-- setup lsp servers
@@ -66,9 +75,11 @@ return {
 					},
 				},
 			})
-			require("lspconfig").bashls.setup({})
 			require("lspconfig").clangd.setup({})
+			require("lspconfig").bashls.setup({})
 			require("lspconfig").yamlls.setup({})
+			require("lspconfig").dockerls.setup({})
+			require("lspconfig").docker_compose_language_service.setup({})
 
 			-- setup lsp keymaps
 			vim.api.nvim_create_autocmd("LspAttach", {

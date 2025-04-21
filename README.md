@@ -27,3 +27,6 @@
 * Lua
 * Go
 * C/C++
+* terraform
+* docker
+* docker-compose
